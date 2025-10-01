@@ -86,7 +86,8 @@ public class StringManipulationChallenge {
     public static String stringToUpper(String myString) { // the method itself has 'parameters'
         // TODO: Implement this method
         return null;
-    } // Test
+    }
+    // Test
 
     /**
      * This method has one string parameter and will:
