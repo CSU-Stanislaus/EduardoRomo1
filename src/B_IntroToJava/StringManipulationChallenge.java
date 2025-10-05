@@ -76,37 +76,109 @@ public class StringManipulationChallenge {
         }
     }
 
-    public static String stringToUpper(String myString) {
+    /**
+     * This method has one string parameter and will:
+     * 1) change the string to all upper case and
+     * 2) return the new string.
+     * @param myString
+     * @return upper-cased string (null if input is null)
+     */
+    public static String stringToUpper(String myString) { // the method itself has 'parameters'
         if (myString == null) return null;
         return myString.toUpperCase();
     }
+    // Test
 
+    /**
+     * This method has one string parameter and will:
+     * 1) change the string to all lower case,
+     * 2) return the new string into the 'lowerCaseString' variable
+     * @param usersString
+     * @return lower-cased string (null if input is null)
+     */
     public static String stringToLower(String usersString) {
         if (usersString == null) return null;
         return usersString.toLowerCase();
     }
 
+    /**
+     * This method has one string parameter and will:
+     * 1) trim the whitespace from before and after the string, and
+     * 2) return the new string.
+     * HINT: When getting input from the user (you are the user), try inputting
+     * "   a string with whitespace   " to see how the whitespace is trimmed.
+     * @param usersStringWithWhiteSpace
+     * @return trimmed string (null if input is null)
+     */
     public static String stringTrim(String usersStringWithWhiteSpace) {
         if (usersStringWithWhiteSpace == null) return null;
         return usersStringWithWhiteSpace.trim();
     }
 
+    /**
+     * This method has three parameters, one string and two integers. It will:
+     * 1) get the substring based on the first integer element and the length
+     *    of the substring desired.
+     * 2) return the substring.
+     * @param x
+     * @param firstElement
+     * @param lengthOfSubstring
+     * @return the substring
+     * @throws IllegalArgumentException if arguments are invalid
+     */
     public static String stringSubstring(String x, int firstElement, int lengthOfSubstring) {
-        if (x == null) throw new IllegalArgumentException("Input string is null");
-        if (firstElement < 0 || lengthOfSubstring < 0 || firstElement + lengthOfSubstring > x.length()) {
-            throw new IllegalArgumentException("Invalid start index or substring length");
+        if (x == null) {
+            throw new IllegalArgumentException("input string is null");
         }
-        return x.substring(firstElement, firstElement + lengthOfSubstring);
+        if (firstElement < 0) {
+            throw new IllegalArgumentException("start index must be non-negative");
+        }
+        if (lengthOfSubstring < 0) {
+            throw new IllegalArgumentException("length must be non-negative");
+        }
+        if (firstElement > x.length()) {
+            throw new IllegalArgumentException("start index beyond string length");
+        }
+        int endExclusive = firstElement + lengthOfSubstring;
+        if (endExclusive > x.length()) {
+            throw new IllegalArgumentException("substring exceeds string bounds");
+        }
+        return x.substring(firstElement, endExclusive);
     }
 
+    /**
+     * This method has two parameters, one string and one char. It will:
+     * 1) search the string parameter for first occurrence of the char parameter and
+     * 2) return the index of the char.
+     * HINT: Think about how stringTrim() (above) would be useful in this situation
+     * when getting the char from the user.
+     * @param userInputString
+     * @param charUserWants
+     * @return index of the char (or -1 if not found or input is null)
+     */
     public static int searchChar(String userInputString, char charUserWants) {
         if (userInputString == null) return -1;
         return userInputString.indexOf(charUserWants);
     }
 
+    /**
+     * This method has two string parameters. It will:
+     * 1) concatenate the two strings with a space between them.
+     * 2) return the new string.
+     * HINT: You will need to get the users first and last name in the
+     * main method and send them as arguments.
+     * @param fName
+     * @param lName
+     * @return concatenated "first last"
+     */
     public static String concatNames(String fName, String lName) {
-        if (fName == null) fName = "";
-        if (lName == null) lName = "";
-        return fName.trim() + " " + lName.trim();
+        if (fName == null && lName == null) return null;
+
+        String left = (fName == null ? "" : fName.trim());
+        String right = (lName == null ? "" : lName.trim());
+
+        if (left.isEmpty()) return right;
+        if (right.isEmpty()) return left;
+        return left + " " + right;
     }
 }
