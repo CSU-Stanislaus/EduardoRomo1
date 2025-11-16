@@ -1,4 +1,4 @@
-package src.D_Methods;
+package D_Methods.D_Methods;
 
 public class MethodsLab5 {
 
